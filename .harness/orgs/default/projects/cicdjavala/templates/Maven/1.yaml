@@ -1,0 +1,12 @@
+template:
+  name: Maven
+  type: Step
+  projectIdentifier: cicdjavala
+  orgIdentifier: default
+  spec:
+    type: Run
+    spec:
+      shell: Sh
+      command: mvn clean package
+  identifier: Maven
+  versionLabel: "1"
