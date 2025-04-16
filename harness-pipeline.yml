@@ -1,0 +1,36 @@
+pipeline:
+  name: ci-pipeline-java-docker
+  identifier: ci-pipeline-java-docker
+  projectIdentifier: <project-identifier>
+  orgIdentifier: <org-identifier>
+  stages:
+    - stage:
+        name: Build
+        identifier: build
+        type: CI
+        spec:
+          execution:
+            steps:
+              - step:
+                  name: Build with Maven
+                  identifier: build-with-maven
+                  type: Run
+                  spec:
+                    connectorRef: github-connector
+                    image: "maven:3.9.4-eclipse-temurin-17"
+                    command: "mvn clean package"
+                    shell: Bash
+    - stage:
+        name: Deploy
+        identifier: deploy
+        type: Deployment
+        spec:
+          execution:
+            steps:
+              - step:
+                  name: Deploy to Docker
+                  identifier: deploy-docker
+                  type: Docker
+                  spec:
+                    image: "<docker-image-name>"
+                    deployCommand: "docker run -d -p 8080:8080 <docker-image-name>"
