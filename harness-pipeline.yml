@@ -1,8 +1,6 @@
 pipeline:
   name: ci-pipeline-java-docker
   identifier: ci-pipeline-java-docker
-  projectIdentifier: <project-identifier>
-  orgIdentifier: <org-identifier>
   stages:
     - stage:
         name: Build
